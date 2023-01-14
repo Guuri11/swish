@@ -3,6 +3,8 @@ package com.swish.app.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +17,9 @@ public class Player {
   private Byte number;
   private Byte age;
   private PlayerStatus status;
+  @ManyToOne
+  @JoinColumn(name = "team_id")
+  private Team team;
 
   public Player() {
 
@@ -36,17 +41,44 @@ public class Player {
     if (this == o) {
       return true;
     }
-    if (!(o instanceof Player)) {
+    if (o == null || getClass() != o.getClass()) {
       return false;
     }
+
     final Player player = (Player) o;
-    return Objects.equals(this.id, player.id);
+
+    if (!Objects.equals(id, player.id)) {
+      return false;
+    }
+    if (!Objects.equals(name, player.name)) {
+      return false;
+    }
+    if (!Objects.equals(position, player.position)) {
+      return false;
+    }
+    if (!Objects.equals(number, player.number)) {
+      return false;
+    }
+    if (!Objects.equals(age, player.age)) {
+      return false;
+    }
+    if (status != player.status) {
+      return false;
+    }
+    return Objects.equals(team, player.team);
   }
 
   @Override
   public int hashCode() {
 
-    return Objects.hash(this.id, this.name, this.position, this.number, this.age, this.status);
+    int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    result = 31 * result + (position != null ? position.hashCode() : 0);
+    result = 31 * result + (number != null ? number.hashCode() : 0);
+    result = 31 * result + (age != null ? age.hashCode() : 0);
+    result = 31 * result + (status != null ? status.hashCode() : 0);
+    result = 31 * result + (team != null ? team.hashCode() : 0);
+    return result;
   }
 
   @Override
@@ -58,6 +90,7 @@ public class Player {
         ", position='" + position + '\'' +
         ", number=" + number +
         ", status=" + status +
+        ", team=" + team +
         ", age=" + age +
         '}';
   }
@@ -125,4 +158,15 @@ public class Player {
 
     this.status = status;
   }
+
+  public Team getTeam() {
+
+    return team;
+  }
+
+  public void setTeam(final Team team) {
+
+    this.team = team;
+  }
+
 }

@@ -72,6 +72,7 @@ public class PlayerController {
           player.setNumber(newPlayer.getNumber());
           player.setAge(newPlayer.getAge());
           player.setStatus(newPlayer.getStatus());
+          player.setTeam(newPlayer.getTeam());
           return repository.save(player);
         })
         .orElseGet(() -> {
