@@ -1,21 +1,29 @@
 package com.swish.app.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import java.util.Objects;
 
 @Entity
+@Table(name = "Players")
 public class Player {
 
   private @Id
   @GeneratedValue Long id;
+  @Column(name = "name")
   private String name;
+  @Column(name = "position")
   private String position;
+  @Column(name = "number")
   private Byte number;
+  @Column(name = "age")
   private Byte age;
+  @Column(name = "status")
   private PlayerStatus status;
   @ManyToOne
   @JoinColumn(name = "team_id")

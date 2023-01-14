@@ -1,16 +1,21 @@
 package com.swish.app.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.util.Objects;
 
 @Entity
+@Table(name = "Teams")
 public class Team {
 
   private @Id
   @GeneratedValue Long id;
+  @Column(name = "name")
   private String name;
+  @Column(name = "location")
   private String location;
 
   public Team() {
