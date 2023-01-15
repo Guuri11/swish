@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api/v1/players")
 public class PlayerController {
 
   private final PlayerRepository repository;
@@ -33,7 +35,7 @@ public class PlayerController {
     this.assembler = assembler;
   }
 
-  @GetMapping("/players")
+  @GetMapping
   public CollectionModel<EntityModel<Player>> all() {
 
     final List<EntityModel<Player>> players = repository.findAll()
@@ -43,7 +45,7 @@ public class PlayerController {
     return CollectionModel.of(players, linkTo(methodOn(PlayerController.class).all()).withSelfRel());
   }
 
-  @PostMapping("/players")
+  @PostMapping
   ResponseEntity<?> newPlayer(@RequestBody final Player newPlayer) {
 
     final EntityModel<Player> entityModel = assembler.toModel(repository.save(newPlayer));
@@ -53,7 +55,7 @@ public class PlayerController {
         .body(entityModel);
   }
 
-  @GetMapping("/players/{id}")
+  @GetMapping("/{id}")
   public EntityModel<Player> one(@PathVariable final Long id) {
 
     final Player player = repository.findById(id) //
@@ -62,7 +64,7 @@ public class PlayerController {
     return assembler.toModel(player);
   }
 
-  @PutMapping("/players/{id}")
+  @PutMapping("/{id}")
   ResponseEntity<?> replacePlayer(@RequestBody final Player newPlayer, @PathVariable final Long id) {
 
     final Player updatedPlayer = repository.findById(id)
@@ -87,7 +89,7 @@ public class PlayerController {
         .body(entityModel);
   }
 
-  @DeleteMapping("/players/{id}")
+  @DeleteMapping("/{id}")
   ResponseEntity<?> deletePlayer(@PathVariable final Long id) {
 
     repository.deleteById(id);

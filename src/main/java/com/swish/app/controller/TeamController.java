@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api/v1/teams")
 public class TeamController {
 
   private final TeamRepository repository;
@@ -33,7 +35,7 @@ public class TeamController {
     this.assembler = assembler;
   }
 
-  @GetMapping("/teams")
+  @GetMapping
   public CollectionModel<EntityModel<Team>> all() {
 
     final List<EntityModel<Team>> teams = repository.findAll()
@@ -43,7 +45,7 @@ public class TeamController {
     return CollectionModel.of(teams, linkTo(methodOn(TeamController.class).all()).withSelfRel());
   }
 
-  @PostMapping("/teams")
+  @PostMapping
   ResponseEntity<?> newTeam(@RequestBody final Team newTeam) {
 
     final EntityModel<Team> entityModel = assembler.toModel(repository.save(newTeam));
@@ -53,7 +55,7 @@ public class TeamController {
         .body(entityModel);
   }
 
-  @GetMapping("/teams/{id}")
+  @GetMapping("/{id}")
   public EntityModel<Team> one(@PathVariable final Long id) {
 
     final Team team = repository.findById(id) //
@@ -62,7 +64,7 @@ public class TeamController {
     return assembler.toModel(team);
   }
 
-  @PutMapping("/teams/{id}")
+  @PutMapping("/{id}")
   ResponseEntity<?> replaceTeam(@RequestBody final Team newTeam, @PathVariable final Long id) {
 
     final Team updatedTeam = repository.findById(id)
@@ -83,7 +85,7 @@ public class TeamController {
         .body(entityModel);
   }
 
-  @DeleteMapping("/teams/{id}")
+  @DeleteMapping("/{id}")
   ResponseEntity<?> deleteTeam(@PathVariable final Long id) {
 
     repository.deleteById(id);

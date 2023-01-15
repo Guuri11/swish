@@ -13,15 +13,19 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api/v1/users")
+@PreAuthorize("hasRole('USER')")
 public class UserController {
 
   private final UserRepository repository;
@@ -33,7 +37,7 @@ public class UserController {
     this.assembler = assembler;
   }
 
-  @GetMapping("/users")
+  @GetMapping
   public CollectionModel<EntityModel<User>> all() {
 
     final List<EntityModel<User>> users = repository.findAll()
@@ -43,7 +47,7 @@ public class UserController {
     return CollectionModel.of(users, linkTo(methodOn(UserController.class).all()).withSelfRel());
   }
 
-  @PostMapping("/users")
+  @PostMapping
   ResponseEntity<?> newUser(@RequestBody final User newUser) {
 
     final EntityModel<User> entityModel = assembler.toModel(repository.save(newUser));
@@ -53,7 +57,7 @@ public class UserController {
         .body(entityModel);
   }
 
-  @GetMapping("/users/{id}")
+  @GetMapping("/{id}")
   public EntityModel<User> one(@PathVariable final Long id) {
 
     final User user = repository.findById(id) //
@@ -62,7 +66,7 @@ public class UserController {
     return assembler.toModel(user);
   }
 
-  @PutMapping("/users/{id}")
+  @PutMapping("/{id}")
   ResponseEntity<?> replaceUser(@RequestBody final User newUser, @PathVariable final Long id) {
 
     final User updatedUser = repository.findById(id)
@@ -83,7 +87,7 @@ public class UserController {
         .body(entityModel);
   }
 
-  @DeleteMapping("/users/{id}")
+  @DeleteMapping("/{id}")
   ResponseEntity<?> deleteUser(@PathVariable final Long id) {
 
     repository.deleteById(id);
