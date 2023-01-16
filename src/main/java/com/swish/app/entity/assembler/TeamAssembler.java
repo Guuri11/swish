@@ -13,10 +13,10 @@ import org.springframework.stereotype.Component;
 public class TeamAssembler implements RepresentationModelAssembler<Team, EntityModel<Team>> {
 
   @Override
-  public EntityModel<Team> toModel(final Team employee) {
+  public EntityModel<Team> toModel(final Team team) {
 
-    return EntityModel.of(employee, //
-        linkTo(methodOn(TeamController.class).one(employee.getId())).withSelfRel(),
+    return EntityModel.of(team, //
+        linkTo(methodOn(TeamController.class).one(team.getId())).withSelfRel(),
         linkTo(methodOn(TeamController.class).all()).withRel("teams"));
   }
 

@@ -13,10 +13,10 @@ import org.springframework.stereotype.Component;
 public class UserAssembler implements RepresentationModelAssembler<User, EntityModel<User>> {
 
   @Override
-  public EntityModel<User> toModel(final User employee) {
+  public EntityModel<User> toModel(final User user) {
 
-    return EntityModel.of(employee, //
-        linkTo(methodOn(UserController.class).one(employee.getId())).withSelfRel(),
+    return EntityModel.of(user,
+        linkTo(methodOn(UserController.class).one(user.getId())).withSelfRel(),
         linkTo(methodOn(UserController.class).all()).withRel("users"));
   }
 

@@ -13,10 +13,10 @@ import org.springframework.stereotype.Component;
 public class PlayerAssembler implements RepresentationModelAssembler<Player, EntityModel<Player>> {
 
   @Override
-  public EntityModel<Player> toModel(final Player employee) {
+  public EntityModel<Player> toModel(final Player player) {
 
-    return EntityModel.of(employee, //
-        linkTo(methodOn(PlayerController.class).one(employee.getId())).withSelfRel(),
+    return EntityModel.of(player, //
+        linkTo(methodOn(PlayerController.class).one(player.getId())).withSelfRel(),
         linkTo(methodOn(PlayerController.class).all()).withRel("players"));
   }
 
