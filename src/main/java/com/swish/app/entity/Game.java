@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.util.Date;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,7 +30,7 @@ public class Game {
   private Team away;
   private Integer local_score;
   private Integer away_score;
-  private Date scheduleDate;
+  private LocalDateTime scheduleDate;
 
 
 }
