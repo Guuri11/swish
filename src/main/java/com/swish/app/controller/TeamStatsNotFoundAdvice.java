@@ -1,6 +1,6 @@
 package com.swish.app.controller;
 
-import com.swish.app.exception.PlayerStatsNotFoundException;
+import com.swish.app.exception.TeamStatsNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class PlayerStatsNotFoundAdvice {
+public class TeamStatsNotFoundAdvice {
 
   @ResponseBody
-  @ExceptionHandler(PlayerStatsNotFoundException.class)
+  @ExceptionHandler(TeamStatsNotFoundException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
-  String playerStatsNotFoundHandler(final PlayerStatsNotFoundException ex) {
+  String teamStatsNotFoundHandler(final TeamStatsNotFoundException ex) {
 
     return ex.getMessage();
   }
