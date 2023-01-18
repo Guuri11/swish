@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -38,7 +39,14 @@ public class UserService {
   public EntityModel<User> one(final Long id) {
 
     final User user = repository.findById(id)
-        .orElseThrow(() -> new UserNotFoundException(id));
+        .orElseThrow(() -> new UserNotFoundException(id.toString()));
+    return assembler.toModel(user);
+  }
+
+  public EntityModel<User> me(final Authentication authentication) {
+
+    final User user = repository.findByEmail(authentication.getName())
+        .orElseThrow(() -> new UserNotFoundException(authentication.getName()));
     return assembler.toModel(user);
   }
 

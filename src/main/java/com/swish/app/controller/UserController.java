@@ -6,6 +6,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,6 +46,12 @@ public class UserController {
   public EntityModel<User> one(@PathVariable final Long id) {
 
     return userService.one(id);
+  }
+
+  @GetMapping("/me")
+  public EntityModel<User> me(final Authentication authentication) {
+
+    return userService.me(authentication);
   }
 
   @PutMapping("/{id}")
