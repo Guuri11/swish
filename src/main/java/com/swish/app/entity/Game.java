@@ -28,8 +28,8 @@ public class Game {
   @ManyToOne
   @JoinColumn(name = "away_id")
   private Team away;
-  private Integer local_score;
-  private Integer away_score;
+  private Integer localScore;
+  private Integer awayScore;
   private LocalDateTime scheduleDate;
 
 

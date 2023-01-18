@@ -53,9 +53,9 @@ public class GameService {
         .map(g -> {
           g.setAway(game.getAway());
           g.setLocal(game.getLocal());
-          g.setAway_score(game.getAway_score());
+          g.setAwayScore(game.getAwayScore());
           g.setScheduleDate(game.getScheduleDate());
-          g.setLocal_score(game.getLocal_score());
+          g.setLocalScore(game.getLocalScore());
           return repository.save(g);
         })
         .orElseGet(() -> {
