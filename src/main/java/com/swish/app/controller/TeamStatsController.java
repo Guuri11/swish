@@ -47,6 +47,18 @@ public class TeamStatsController {
     return teamStatsService.one(id);
   }
 
+  @GetMapping("/team/{teamId}")
+  public EntityModel<TeamStats> oneByTeam(@PathVariable final Long teamId) {
+
+    return teamStatsService.oneByTeam(teamId);
+  }
+
+  @GetMapping("/game/{gameId}")
+  public EntityModel<TeamStats> oneByGame(@PathVariable final Long gameId) {
+
+    return teamStatsService.oneByGame(gameId);
+  }
+
   @PutMapping("/{id}")
   ResponseEntity<?> replaceTeamStats(@RequestBody final TeamStats newTeamStats, @PathVariable final Long id) {
 

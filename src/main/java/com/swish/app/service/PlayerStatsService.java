@@ -7,6 +7,7 @@ import com.swish.app.controller.PlayerStatsController;
 import com.swish.app.entity.PlayerStats;
 import com.swish.app.entity.assembler.PlayerStatsAssembler;
 import com.swish.app.exception.PlayerStatsNotFoundException;
+import com.swish.app.exception.TeamStatsNotFoundException;
 import com.swish.app.repository.PlayerStatsRepository;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,6 +42,21 @@ public class PlayerStatsService {
         .orElseThrow(() -> new PlayerStatsNotFoundException(id));
     return assembler.toModel(playerStats);
   }
+
+  public EntityModel<PlayerStats> oneByPlayer(final Long id) {
+
+    final PlayerStats playerStats = repository.findByPlayer(id)
+        .orElseThrow(() -> new TeamStatsNotFoundException(id));
+    return assembler.toModel(playerStats);
+  }
+
+  public EntityModel<PlayerStats> oneByGame(final Long id) {
+
+    final PlayerStats playerStats = repository.findByGame(id)
+        .orElseThrow(() -> new TeamStatsNotFoundException(id));
+    return assembler.toModel(playerStats);
+  }
+
 
   public EntityModel<PlayerStats> create(final PlayerStats playerStats) {
 

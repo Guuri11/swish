@@ -42,6 +42,21 @@ public class TeamStatsService {
     return assembler.toModel(teamStats);
   }
 
+  public EntityModel<TeamStats> oneByTeam(final Long id) {
+
+    final TeamStats teamStats = repository.findByTeam(id)
+        .orElseThrow(() -> new TeamStatsNotFoundException(id));
+    return assembler.toModel(teamStats);
+  }
+
+  public EntityModel<TeamStats> oneByGame(final Long id) {
+
+    final TeamStats teamStats = repository.findByGame(id)
+        .orElseThrow(() -> new TeamStatsNotFoundException(id));
+    return assembler.toModel(teamStats);
+  }
+
+
   public EntityModel<TeamStats> create(final TeamStats teamStats) {
 
     return assembler.toModel(repository.save(teamStats));
