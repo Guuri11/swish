@@ -1,6 +1,7 @@
 package com.swish.app.controller;
 
 import com.swish.app.entity.Player;
+import com.swish.app.entity.Team;
 import com.swish.app.service.PlayerService;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -45,6 +46,12 @@ public class PlayerController {
   public EntityModel<Player> one(@PathVariable final Long id) {
 
     return playerService.one(id);
+  }
+
+  @GetMapping("/team/{team}")
+  public CollectionModel<EntityModel<Player>> allByTeam(@PathVariable final Team team) {
+
+    return playerService.allByTeam(team);
   }
 
   @PutMapping("/{id}")

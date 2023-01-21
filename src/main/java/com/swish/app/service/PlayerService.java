@@ -5,6 +5,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import com.swish.app.controller.PlayerController;
 import com.swish.app.entity.Player;
+import com.swish.app.entity.Team;
 import com.swish.app.entity.assembler.PlayerAssembler;
 import com.swish.app.exception.PlayerNotFoundException;
 import com.swish.app.repository.PlayerRepository;
@@ -34,6 +35,16 @@ public class PlayerService {
         .collect(Collectors.toList());
     return CollectionModel.of(players, linkTo(methodOn(PlayerController.class).all()).withSelfRel());
   }
+
+  public CollectionModel<EntityModel<Player>> allByTeam(final Team team) {
+
+    final List<EntityModel<Player>> players = repository.findByTeam(team)
+        .stream()
+        .map(assembler::toModel)
+        .collect(Collectors.toList());
+    return CollectionModel.of(players, linkTo(methodOn(PlayerController.class).all()).withSelfRel());
+  }
+
 
   public EntityModel<Player> one(final Long id) {
 
