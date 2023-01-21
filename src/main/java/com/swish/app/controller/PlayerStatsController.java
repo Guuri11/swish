@@ -1,5 +1,7 @@
 package com.swish.app.controller;
 
+import com.swish.app.entity.Game;
+import com.swish.app.entity.Player;
 import com.swish.app.entity.PlayerStats;
 import com.swish.app.service.PlayerStatsService;
 import org.springframework.hateoas.CollectionModel;
@@ -47,16 +49,16 @@ public class PlayerStatsController {
     return playerStatsService.one(id);
   }
 
-  @GetMapping("/player/{playerId}")
-  public EntityModel<PlayerStats> oneByPlayer(@PathVariable final Long playerId) {
+  @GetMapping("/player/{player}")
+  public CollectionModel<EntityModel<PlayerStats>> allByPlayer(@PathVariable final Player player) {
 
-    return playerStatsService.oneByPlayer(playerId);
+    return playerStatsService.allByPlayer(player);
   }
 
-  @GetMapping("/game/{gameId}")
-  public EntityModel<PlayerStats> oneByGame(@PathVariable final Long gameId) {
+  @GetMapping("/game/{game}")
+  public CollectionModel<EntityModel<PlayerStats>> allByGame(@PathVariable final Game game) {
 
-    return playerStatsService.oneByGame(gameId);
+    return playerStatsService.allbyGame(game);
   }
 
   @PutMapping("/{id}")

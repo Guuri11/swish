@@ -1,12 +1,14 @@
 package com.swish.app.repository;
 
+import com.swish.app.entity.Game;
+import com.swish.app.entity.Player;
 import com.swish.app.entity.PlayerStats;
-import java.util.Optional;
+import java.util.Collection;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlayerStatsRepository extends JpaRepository<PlayerStats, Long> {
 
-  Optional<PlayerStats> findByPlayer(Long player);
+  Collection<PlayerStats> findByPlayer(Player player);
 
-  Optional<PlayerStats> findByGame(Long game);
+  Collection<PlayerStats> findByGame(Game game);
 }

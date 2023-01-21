@@ -35,4 +35,11 @@ public class TeamStats {
   private Integer rebounds;
   private Integer assists;
 
+  public boolean getWon() {
+
+    if (this.game.getAway() == this.team) {
+      return this.game.getAwayScore() > this.game.getLocalScore();
+    }
+    return this.game.getAwayScore() < this.game.getLocalScore();
+  }
 }
