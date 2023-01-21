@@ -4,6 +4,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import com.swish.app.controller.TeamStatsController;
+import com.swish.app.entity.Game;
+import com.swish.app.entity.Team;
 import com.swish.app.entity.TeamStats;
 import com.swish.app.entity.assembler.TeamStatsAssembler;
 import com.swish.app.exception.TeamStatsNotFoundException;
@@ -42,17 +44,19 @@ public class TeamStatsService {
     return assembler.toModel(teamStats);
   }
 
-  public EntityModel<TeamStats> oneByTeam(final Long id) {
+  public CollectionModel<EntityModel<TeamStats>> allByTeam(final Team team) {
 
-    final TeamStats teamStats = repository.findByTeam(id)
-        .orElseThrow(() -> new TeamStatsNotFoundException(id));
-    return assembler.toModel(teamStats);
+    final List<EntityModel<TeamStats>> teamStats = repository.findByTeam(team)
+        .stream()
+        .map(assembler::toModel)
+        .collect(Collectors.toList());
+    return CollectionModel.of(teamStats, linkTo(methodOn(TeamStatsController.class).all()).withSelfRel());
   }
 
-  public EntityModel<TeamStats> oneByGame(final Long id) {
+  public EntityModel<TeamStats> oneByGame(final Game game) {
 
-    final TeamStats teamStats = repository.findByGame(id)
-        .orElseThrow(() -> new TeamStatsNotFoundException(id));
+    final TeamStats teamStats = repository.findByGame(game)
+        .orElseThrow(() -> new TeamStatsNotFoundException(game.getId()));
     return assembler.toModel(teamStats);
   }
 
