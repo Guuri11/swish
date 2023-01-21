@@ -53,13 +53,14 @@ public class TeamStatsService {
     return CollectionModel.of(teamStats, linkTo(methodOn(TeamStatsController.class).all()).withSelfRel());
   }
 
-  public EntityModel<TeamStats> oneByGame(final Game game) {
+  public CollectionModel<EntityModel<TeamStats>> oneByGame(final Game game) {
 
-    final TeamStats teamStats = repository.findByGame(game)
-        .orElseThrow(() -> new TeamStatsNotFoundException(game.getId()));
-    return assembler.toModel(teamStats);
+    final List<EntityModel<TeamStats>> teamStats = repository.findByGame(game)
+        .stream()
+        .map(assembler::toModel)
+        .collect(Collectors.toList());
+    return CollectionModel.of(teamStats, linkTo(methodOn(TeamStatsController.class).all()).withSelfRel());
   }
-
 
   public EntityModel<TeamStats> create(final TeamStats teamStats) {
 

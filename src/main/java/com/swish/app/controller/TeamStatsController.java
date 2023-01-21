@@ -56,7 +56,7 @@ public class TeamStatsController {
   }
 
   @GetMapping("/game/{game}")
-  public EntityModel<TeamStats> oneByGame(@PathVariable final Game game) {
+  public CollectionModel<EntityModel<TeamStats>> oneByGame(@PathVariable final Game game) {
 
     return teamStatsService.oneByGame(game);
   }
