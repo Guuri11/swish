@@ -56,6 +56,7 @@ public class GameService {
           g.setAwayScore(game.getAwayScore());
           g.setScheduleDate(game.getScheduleDate());
           g.setLocalScore(game.getLocalScore());
+          g.setGameStatus(game.getGameStatus());
           return repository.save(g);
         })
         .orElseGet(() -> {

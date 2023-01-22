@@ -31,6 +31,7 @@ public class Game {
   private Integer localScore;
   private Integer awayScore;
   private LocalDateTime scheduleDate;
+  private GameStatus gameStatus;
 
 
 }
