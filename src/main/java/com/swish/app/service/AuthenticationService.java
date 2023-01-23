@@ -1,12 +1,12 @@
 package com.swish.app.service;
 
-import com.swish.app.entity.Role;
-import com.swish.app.entity.User;
-import com.swish.app.repository.UserRepository;
+import com.swish.app.domain.Role;
+import com.swish.app.domain.User;
+import com.swish.app.infrastructure.persistence.UserRepository;
+import com.swish.app.infrastructure.security.JwtService;
 import com.swish.app.request.AuthenticationRequest;
 import com.swish.app.request.RegisterRequest;
 import com.swish.app.response.AuthenticationResponse;
-import com.swish.app.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

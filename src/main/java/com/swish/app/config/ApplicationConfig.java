@@ -1,6 +1,6 @@
 package com.swish.app.config;
 
-import com.swish.app.repository.UserRepository;
+import com.swish.app.infrastructure.persistence.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

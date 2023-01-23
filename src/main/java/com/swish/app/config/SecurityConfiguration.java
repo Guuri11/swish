@@ -1,5 +1,6 @@
 package com.swish.app.config;
 
+import com.swish.app.infrastructure.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

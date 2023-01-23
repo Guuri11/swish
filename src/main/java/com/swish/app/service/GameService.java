@@ -3,11 +3,11 @@ package com.swish.app.service;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import com.swish.app.controller.GameController;
-import com.swish.app.entity.Game;
-import com.swish.app.entity.assembler.GameAssembler;
+import com.swish.app.domain.Game;
+import com.swish.app.domain.assembler.GameAssembler;
 import com.swish.app.exception.GameNotFoundException;
-import com.swish.app.repository.GameRepository;
+import com.swish.app.infrastructure.persistence.GameRepository;
+import com.swish.app.infrastructure.web.controller.GameController;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.hateoas.CollectionModel;

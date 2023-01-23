@@ -3,11 +3,11 @@ package com.swish.app.service;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import com.swish.app.controller.TeamController;
-import com.swish.app.entity.Team;
-import com.swish.app.entity.assembler.TeamAssembler;
+import com.swish.app.domain.Team;
+import com.swish.app.domain.assembler.TeamAssembler;
 import com.swish.app.exception.TeamNotFoundException;
-import com.swish.app.repository.TeamRepository;
+import com.swish.app.infrastructure.persistence.TeamRepository;
+import com.swish.app.infrastructure.web.controller.TeamController;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.hateoas.CollectionModel;
