@@ -1,4 +1,4 @@
-# Swish Backend: Spring Boot
+# Swish Backend 🏀: Spring Boot
 
 Swish is a basketball scoreboard platform that allows users to manage Games, Players, Users, and
 Teams. The backend of the platform is built using Spring Boot and provides a REST API with CRUD
@@ -25,3 +25,9 @@ operations for each of the resources.
 - H2 Database
 - WebSocket
 - OpenAPI/Swagger
+
+## Demo of a GSW vs LA in 2021
+Left side we have admin view in the scoreboard, right side we have user view of a game
+[https://drive.google.com/file/d/1X-cU9hXQ7y](https://drive.google.com/file/d/1X-cU9hXQ7yjIBt-nHUUIAyPVRydO-oqI/view?usp=share_link)
+
+![Captura de Pantalla 2023-01-23 a las 21 47 37](https://user-images.githubusercontent.com/48799796/214151422-2aee3846-112e-4861-99d9-03694bd8d0fc.png)
