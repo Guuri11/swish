@@ -2,7 +2,7 @@
 
 Swish is a basketball scoreboard platform that allows users to manage Games, Players, Users, and
 Teams. The backend of the platform is built using Spring Boot and provides a REST API with CRUD
-operations for each of the resources.
+operations for each of the resources. DDD & Hexagonal Arch.
 
 ## Features
 
