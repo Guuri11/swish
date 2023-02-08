@@ -1,7 +1,7 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/swish
-    username: guuri11
+    username: root
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
